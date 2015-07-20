@@ -19,4 +19,9 @@ public class HelloWorldController
     {
         return "helloworld";
     }
+
+    @RequestMapping("/goodbyeworld")
+    public String goodbyeworld(HttpServletRequest request, HttpServletResponse response) {
+        return "goodbyeworld";
+    }
 }
