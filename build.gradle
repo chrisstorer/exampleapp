@@ -58,6 +58,10 @@ task wrapper(type: Wrapper) {
 
 //Note this is required as a work arround for Jenkins depliy plugin not working properly with tomcat.
 //This task is invoked instead
+ext.tomcat_username = "set_user"
+ext.tomcat_password = "set_password"
+ext.tomcat_server = "set_url"
+ext.tomcat_path = "set deploy path"
 task deployToServer(type: Exec, dependsOn: 'assemble') {
-    commandLine "curl -T \"$war.archivePath\" \"http://$tomcat_username:$tomcat_password@$tomcat_server/manager/text/deploy?path=/$tomcatpath&update=true\""
+    commandLine "curl -T \"$war.archivePath\" \"http://$tomcat_username:$tomcat_password@$tomcat_server/manager/text/deploy?path=/$tomcat_path&update=true\""
 }
