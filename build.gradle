@@ -60,13 +60,13 @@ task wrapper(type: Wrapper) {
 //This task is invoked instead
 if (!project.hasProperty("tomcat_username"))
     ext.tomcat_username = "set_user";
-if (!project.hasProperty("set_password"))
+if (!project.hasProperty("tomcat_password"))
     ext.tomcat_password = "tomcat_password";
 if (!project.hasProperty("tomcat_server"))
     ext.tomcat_server = "set_url";
 if (!project.hasProperty("tomcat_path"))
     ext.tomcat_path = "set deploy path";
 
-task deployToServer(type: Exec, dependsOn: 'assemble') {
+task deployToServer(type: Exec, dependsOn: 'build') {
     commandLine "curl -T \"$war.archivePath\" \"http://$tomcat_username:$tomcat_password@$tomcat_server/manager/text/deploy?path=/$tomcat_path&update=true\""
 }
