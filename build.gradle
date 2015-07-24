@@ -68,6 +68,6 @@ if (!project.hasProperty("tomcat_path"))
     ext.tomcat_path = "set deploy path";
 
 task deployToServer(type: Exec, dependsOn: 'build') {
-    commandLine "curl -T \"$war.archivePath\" \"http://$tomcat_username:$tomcat_password@$tomcat_server/manager/text/deploy?path=/$tomcat_path&update=true\""
+    commandLine "curl", "-T", "$war.archivePath", "http://$tomcat_username:$tomcat_password@$tomcat_server/manager/text/deploy?path=/$tomcat_path&update=true"
     errorOutput = System.out
 }
